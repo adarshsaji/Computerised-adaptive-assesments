@@ -4,7 +4,7 @@ class Question:
           self.answer = answer
 
 question_prompts = [
-     "What color are apples?\n(a) Red/Green\n(b)Orange",
+     "What color are aeeeepples?\n(a) Red/Green\n(b)Orange",
      "What color are bananas?\n(a) Red/Green\n(b)Yellow",
 ]
 
