@@ -1,24 +1,32 @@
-class Question:
-     def __init__(self, prompt, answer):
-          self.prompt = prompt
-          self.answer = answer
+import random
 
-question_prompts = [
-     "What color are apples?\n(a) Red/Green\n(b)Orange",
-     "What color are bananas?\n(a) Red/Green\n(b)Yellow",
-]
-
-questions = [
-     Question(question_prompts[0], "a"),
-     Question(question_prompts[1], "b"),
-]
-
-def run_quiz(questions):
-     score = 0
-     for question in questions:
-          answer = input(question.prompt)
-          if answer == question.answer:
-               score += 1
-     print("you got", score, "out of", len(questions))
-
-run_quiz(questions)
+def quiz():
+    score=0
+    questionsright=0
+    filename = input(" Please enter the name of the quiz file: ")
+    quizfile = open(filename, "r")
+    #noofquestions = input(" Please enter the total number of questions to be asked: ")
+    quizdata= quizfile.readlines()
+    random.shuffle(quizdata)
+    questionno=1
+    for i in range(5):
+        x= quizdata[i].strip()
+        data= x.split(",")
+        question=data[0]
+        Corranswers= data[1]
+        
+        print("Question #",questionno)
+        print(question)
+        answer=input("Your answer is(A/b/C/D): ")
+        if(answer == Corranswer):
+            score=score+1
+            questionsright=questionsright+1
+            questionno = questionno+1
+        else:
+            print("Incorrect!")
+            questionno = questionno+1
+        print()
+        
+    totalscore= (score/10)*100
+    print("You got ", score, "questions right, and a score of ", totalscore, "%.")
+quiz()
