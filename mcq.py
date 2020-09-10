@@ -17,7 +17,7 @@ def quiz():
         
         print("Question #",questionno)
         print(question)
-        answer=input("Your answer is(A/b/C/D): ")
+        answer=input("Your answer is(A/B/C/D): ")
         if(answer == Corranswer):
             score=score+1
             questionsright=questionsright+1
