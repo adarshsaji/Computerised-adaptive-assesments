@@ -13,12 +13,12 @@ def quiz():
         x= quizdata[i].strip()
         data= x.split(",")
         question=data[0]+"\n A "+ data[1] + "\n B " + data[2]+ "\n C "+data[3] 
-        Corranswers= data[4]
+        Corranswers = data[4]
         
         print("Question #",questionno)
         print(question)
         answer=input("Your answer is(A/B/C/D): ")
-        if(answer == Corranswers):
+        if(answer.upper() == Corranswers):
             score=score+1
             questionsright=questionsright+1
             questionno = questionno+1
