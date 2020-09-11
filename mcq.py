@@ -3,17 +3,17 @@ import random
 def quiz():
     score=0
     questionsright=0
-    filename = "Book1.csv"
+    filename = "questions.csv"
     quizfile = open(filename, "r")
     nq = int(input(" Please enter the total number of questions to be asked: "))
     quizdata= quizfile.readlines()
-    random.shuffle(quizdata)
+    #random.shuffle(quizdata)
     questionno=1
     for i in range(nq):
         x= quizdata[i].strip()
         data= x.split(",")
-        question=data[0]+data[1]+data[2]+data[3]+data[4]
-        Corranswers= data[5]
+        question=data[0]+"\n A "+ data[1] + "\n B " + data[2]+ "\n C "+data[3] 
+        Corranswers= data[4]
         
         print("Question #",questionno)
         print(question)
@@ -27,6 +27,6 @@ def quiz():
             questionno = questionno+1
         print()
         
-    totalscore= (score/10)*100
+    totalscore= (score/nq)*100
     print("You got ", score, "questions right, and a score of ", totalscore, "%.")
 quiz()
