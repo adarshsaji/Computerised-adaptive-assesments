@@ -1,32 +1,32 @@
 import random
-
+import xlrd
 def quiz():
     score=0
     questionsright=0
-    filename = "Book1.csv"
-    quizfile = open(filename, "r")
+    filename = "questions.xlsx"
+    wb = xlrd.open_workbook(filename) 
+    quizfile = wb.sheet_by_index(0) 
     nq = int(input(" Please enter the total number of questions to be asked: "))
-    quizdata= quizfile.readlines()
-    random.shuffle(quizdata)
-    questionno=1
+
+    questionno = 1
     for i in range(nq):
-        x= quizdata[i].strip()
-        data= x.split(",")
-        question=data[0]+data[1]+data[2]+data[3]+data[4]
-        Corranswers= data[5]
-        
-        print("Question #",questionno)
+        question = str(quizfile.cell_value(i,0))+"\n A "+ str(quizfile.cell_value(i,1)) + "\n B " + str(quizfile.cell_value(i,2))+ "\n C "+str(quizfile.cell_value(i,3))
+        Corranswers = str(quizfile.cell_value(i,5))
+        print(Corranswers)
+        print("Question #", questionno)
         print(question)
-        answer=input("Your answer is(A/B/C/D): ")
-        if(answer == Corranswers):
-            score=score+1
-            questionsright=questionsright+1
-            questionno = questionno+1
+        answer = input("Your answer is(A/B/C): ")
+        if (answer.upper() == "A" or answer.upper() ==  "B" or answer.upper() ==  "C"):
+            if(answer.upper() == Corranswers):
+                score = score+1
+                questionsright = questionsright+1
+                questionno = questionno+1
+            else:
+                questionno = questionno+1
+            print()
         else:
-            print("Incorrect!")
+            print("You chose an invalid option. Please try choosing between A,B or C in your next attempt .")
             questionno = questionno+1
-        print()
-        
-    totalscore= (score/10)*100
+    totalscore = (score/nq)*100
     print("You got ", score, "questions right, and a score of ", totalscore, "%.")
 quiz()
