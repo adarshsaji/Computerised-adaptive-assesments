@@ -1,8 +1,11 @@
 import random
 import xlrd
+import get_detail
 
 random_list = []
 option = ['A','B','C']
+
+#random question picker
 def random_gen(total_ques):
     r = random.randint(0,total_ques)
     if r not in random_list:
@@ -10,11 +13,11 @@ def random_gen(total_ques):
     else:
         random_gen(total_ques)
     return r
-
+    
 def quiz():
     score=0         #to keep the score
     questionsright=0
-
+    get_detail.get_data()
     filename = "questions.xlsx"
     wb = xlrd.open_workbook(filename, encoding_override="utf-8") 
     quizfile = wb.sheet_by_index(0)             #sheet 0 in the excel file
