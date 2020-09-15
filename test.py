@@ -1,5 +1,7 @@
 import random
 import xlrd
+import time
+
 
 option = ['A','B','C']
 """random_list = []
@@ -40,7 +42,7 @@ def quiz():
     nq = int(input(" Please enter the total number of questions to be asked: "))
     questionno = 1
     l=2
-    a=0 # Used to traverse through the question file
+    a=0
     i=1
     while (i<=nq): # Condition to show only the desired number of questions
         while(a<tot_que) : # Condition to traverse through the available number of questions
@@ -52,6 +54,7 @@ def quiz():
                 if(level != l): # Determines the correct difficulty level question is asked
                     a+=1
                 else:
+                    t0= time.time()
                     print(Corranswers) #to get ans while testing, comment this before deployment
                     print("Level",level)
                     print("Question #", questionno)
@@ -66,6 +69,7 @@ def quiz():
                         questionno = questionno + 1
                         l=levelup(l)
                         a+=1
+                        t1= time.time()-t0
                         break
                 
                     else: # Checks if answer is incorrect
@@ -73,9 +77,12 @@ def quiz():
                         questionno = questionno + 1
                         l=leveldown(l)
                         a+=1
+                        t1= time.time()-t0
                         break
+        print("Time taken to answer question {} is {}.".format(questionno-1 , t1))
         i=i+1               
     totalscore = (score/nq) * 100
     print("You got ", score, "questions right, and a score of ", totalscore, "%.")
     print(que_dict)
+
 quiz()
