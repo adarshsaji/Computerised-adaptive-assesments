@@ -60,7 +60,7 @@ def quiz():
                     while (answer.upper() not in option):
                          answer = input(answer + " is not a valid option,please choose A, B or C: ") 
                     if(answer.upper() == Corranswers): # Checks if answer is correct
-                        que_dict[i]="Correct"
+                        que_dict[a]= 1
                         score = score+1
                         questionsright = questionsright + 1
                         questionno = questionno + 1
@@ -69,7 +69,7 @@ def quiz():
                         break
                 
                     else: # Checks if answer is incorrect
-                        que_dict[i]="Incorrect"
+                        que_dict[a]= 0
                         questionno = questionno + 1
                         l=leveldown(l)
                         a+=1
