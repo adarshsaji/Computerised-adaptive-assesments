@@ -1,8 +1,9 @@
-import random
+#import random
 import xlrd
 import time
 
 import get_detail
+import graph_gen
 
 option = ['A','B','C']          #to validate option input
 time_taken = []                 #to store time taken per question
@@ -34,7 +35,8 @@ def quiz():
     score = 0         #to keep the score
     questionsright = 0
     que_dict = {}    # Keeps in track the questions answered are correct or incorrect
-
+    que_list = []    # for graphical representation of the result obtained
+    lev_list = []    # to calculate the final score
     get_detail.get_data()  #gets name and roll number from the candidate
 
     filename = "questions.xlsx"
@@ -48,8 +50,8 @@ def quiz():
     test_length = int(input('Enter time constarins of test in minutes: '))
     questionno = 1
 
-    Current_level = 2   # initially l
-    index = 0           # used to store the index od question in excel sheet
+    Current_level = 2   # Starting difficulty level
+    index = 0           # used to store the index of question in excel sheet
     i = 1               # used to iterate nq times 
     
     timeout = float(time.time() + 60*test_length)
@@ -85,6 +87,8 @@ def quiz():
                             answer = input(answer + " is not a valid option,please choose A, B or C: ") 
                         
                         if(answer.upper() == Corranswers): # Checks if answer is correct
+                            que_list.append(index)
+                            lev_list.append(Current_level)
                             que_dict[index] = 1
                             score = score + 1
                             questionsright = questionsright + 1
@@ -95,6 +99,8 @@ def quiz():
                             break
                     
                         else: # Checks if answer is incorrect
+                            que_list.append(index)
+                            lev_list.append(0)
                             que_dict[index] = 0
                             questionno = questionno + 1
                             Current_level = leveldown(Current_level)
@@ -114,7 +120,8 @@ def quiz():
     print("You got {} questions right, and a score of {:.2f}%.".format(score,totalscore))
     print("Time taken to finish the test :{:.2f}.".format(timeEnd))
     print(que_dict)
-    response = que_dict, time_taken
+    response = que_dict, time_taken, lev_list
+    graph_gen.graph(que_list,lev_list)
     get_detail.put_data(response)
 
 quiz()
