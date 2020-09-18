@@ -17,9 +17,10 @@ def get_data():
     wb.save(filename)
 
 def put_data(responses):
-    studentResponse, timeTaken = responses
+    studentResponse, timeTaken, level_list = responses
     i = 3       #for data entry from 3rd column
-    j = 0       #for time taken entry
+    j = 0       #for time taken index
+    k = 0       #for level list index   
     for key,value in studentResponse.items():
          sheet.cell(row = c_val+1 , column = i ).value = key
          i += 1 
@@ -28,5 +29,8 @@ def put_data(responses):
          sheet.cell(row = c_val+1 , column = i ).value = timeTaken[j]
          i += 1
          j += 1
+         sheet.cell(row = c_val+1 , column = i ).value = level_list[k]
+         i += 1
+         k += 1
          
     wb.save(filename)
