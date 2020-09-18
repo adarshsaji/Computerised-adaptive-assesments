@@ -89,7 +89,7 @@ def quiz():
                         if(answer.upper() == Corranswers): # Checks if answer is correct
                             que_list.append(index)
                             lev_list.append(Current_level)
-                            que_dict[index] = 1
+                            que_dict[index] = Current_level
                             score = score + 1
                             questionsright = questionsright + 1
                             questionno = questionno + 1
@@ -109,19 +109,25 @@ def quiz():
                             break
 
         time_taken.append(t1)
-        print("Time taken to answer question {} is {:.2f}.".format(questionno-1 , t1))
+        #print("Time taken to answer question {} is {:.2f}.".format(questionno-1 , t1))
         i += 1 
 
     timeEnd = 0
     for ele in range(0, len(time_taken)): 
         timeEnd += time_taken[ele]
 
-    totalscore = (score/nq) * 100
-    print("You got {} questions right, and a score of {:.2f}%.".format(score,totalscore))
+    #to calculate total score
+    score_keep = 0
+    for sco in range(0, len(lev_list)): 
+        score_keep += lev_list[sco]
+
+    totalscore = (score_keep/((nq*3)-1)) * 100
+    print("You got {} questions right, and a score of {:.2f}%".format(score,totalscore))
     print("Time taken to finish the test :{:.2f}.".format(timeEnd))
     print(que_dict)
-    response = que_dict, time_taken, lev_list
-    graph_gen.graph(que_list,lev_list)
+    response = que_dict, time_taken
     get_detail.put_data(response)
+    graph_gen.graph(lev_list)
+    
 
 quiz()
