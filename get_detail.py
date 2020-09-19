@@ -1,4 +1,4 @@
-import openpyxl
+import openpyxl      #to write from the excel sheet
 
 filename = 'stud_detail.xlsx'
 wb = openpyxl.load_workbook(filename)
@@ -9,7 +9,6 @@ def get_data():
     name = input("Enter your name: ")
     roll_number = (input("Enter your roll number: "))
    
-    # wb.get_index()
 
     sheet.cell(row=c_val+1 , column=1 ).value = name
     sheet.cell(row=c_val+1 , column=2 ).value = roll_number

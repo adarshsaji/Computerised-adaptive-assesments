@@ -1,6 +1,6 @@
 #import random
-import xlrd
-import time
+import xlrd      #to read the excel file
+import time       #to  get the system time
 
 import get_detail
 import graph_gen
@@ -45,6 +45,7 @@ def quiz():
 
     #to find the total number of questions in the sheet
     tot_que = len(quizfile.col(0))
+
     print("There are a total of {} questions. ".format(tot_que))
     nq = int(input(" Please enter the total number of questions to be asked: "))
     test_length = int(input('Enter time constarins of test in minutes: '))
@@ -70,7 +71,7 @@ def quiz():
                     question = str(quizfile.cell_value(index,0))+"\n A "+ str(quizfile.cell_value(index,1)) + "\n B " + str(quizfile.cell_value(index,2))+ "\n C "+str(quizfile.cell_value(index,3))
                     Corranswers = str(quizfile.cell_value(index,5))
                     level= int(quizfile.cell_value(index,6))
-                    timeStart = time.time()
+                    #timeStart = time.time()
                     
                     if(level != Current_level): # Determines the correct difficulty level question is asked
                         index += 1
@@ -90,8 +91,8 @@ def quiz():
                             que_list.append(index)
                             lev_list.append(Current_level)
                             que_dict[index] = Current_level
-                            score = score + 1
-                            questionsright = questionsright + 1
+                            score += 1
+                            #questionsright = questionsright + 1
                             questionno = questionno + 1
                             Current_level = levelup(Current_level)
                             index += 1
