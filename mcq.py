@@ -47,7 +47,8 @@ def quiz():
     tot_que = len(quizfile.col(0))
 
     print("There are a total of {} questions. ".format(tot_que))
-    nq = int(input(" Please enter the total number of questions to be asked: "))
+    #nq = int(input(" Please enter the total number of questions to be asked: "))
+    nq = 10
     test_length = int(input('Enter time constarins of test in minutes: '))
     questionno = 1
 
