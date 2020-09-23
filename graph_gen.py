@@ -18,4 +18,4 @@ def graph(y):
     plt.ylabel('Marks obtained')                            # naming the y axis 
     plt.title("Result of {} Rollnumber {}".format(name, roll))  # giving a title to the graph
     plt.show()                                              # function to show the plot
-    plt.savefig()
+    #plt.savefig(fname = name)
