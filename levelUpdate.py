@@ -29,7 +29,7 @@ while i < entries:
 
 
 def find_max_mode(list1):
-    list_table = statistics._counts(list1)
+    list_table = statistics.counts(list1)
     len_table = len(list_table)
 
     if len_table == 1:
